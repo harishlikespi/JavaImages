@@ -22,17 +22,13 @@ public class Compression {
 
     File compressedImageFile = new File("hmm.jpg");
     OutputStream os = new FileOutputStream(compressedImageFile);
-
     Iterator<ImageWriter> writers = ImageIO.getImageWritersByFormatName("jpg");
     ImageWriter writer = (ImageWriter) writers.next();
-
     ImageOutputStream ios = ImageIO.createImageOutputStream(os);
-    writer.setOutput(ios);
-
+    writer.setOutput(ios)
     ImageWriteParam param = writer.getDefaultWriteParam();
-
-    param.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
-    param.setCompressionQuality(1f);  // Change the quality value you prefer
+    param.setCompressionMode(ImageWriteParam.MODE_DEFAULT);
+    param.setCompressionQuality(1f);  // Change the quality value
     writer.write(null, new IIOImage(image, null, null), param);
 
     os.close();
